@@ -1,0 +1,26 @@
+{
+  "entities": {
+    "SurveyResponse": {
+      "title": "SurveyResponse",
+      "description": "Anonymous training satisfaction survey response with 5 rating items (1-5) and optional feedback.",
+      "type": "object",
+      "properties": {
+        "q1": { "type": "number", "description": "Content usefulness score (1-5)" },
+        "q2": { "type": "number", "description": "Speaker clarity & engagement score (1-5)" },
+        "q3": { "type": "number", "description": "Materials & slides quality score (1-5)" },
+        "q4": { "type": "number", "description": "Venue / online system & facilitation score (1-5)" },
+        "q5": { "type": "number", "description": "Overall satisfaction score (1-5)" },
+        "comment": { "type": "string", "maxLength": 1000, "description": "Optional feedback text" },
+        "deviceToken": { "type": "string", "maxLength": 128, "description": "Client-generated anonymous token for duplicate prevention" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp of submission" }
+      },
+      "required": ["q1", "q2", "q3", "q4", "q5", "deviceToken", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/responses/{responseId}": {
+      "schema": { "$ref": "#/entities/SurveyResponse" },
+      "description": "Public anonymous training survey responses"
+    }
+  }
+}

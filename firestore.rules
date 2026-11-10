@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidScore(val) {
+      return val is int && val >= 1 && val <= 5;
+    }
+
+    function isValidSurveyResponse(data) {
+      return data.keys().hasAll(['q1', 'q2', 'q3', 'q4', 'q5', 'deviceToken', 'createdAt'])
+        && data.keys().hasOnly(['q1', 'q2', 'q3', 'q4', 'q5', 'comment', 'deviceToken', 'createdAt'])
+        && isValidScore(data.q1)
+        && isValidScore(data.q2)
+        && isValidScore(data.q3)
+        && isValidScore(data.q4)
+        && isValidScore(data.q5)
+        && data.deviceToken is string
+        && data.deviceToken.size() >= 1
+        && data.deviceToken.size() <= 128
+        && (!('comment' in data) || (data.comment is string && data.comment.size() <= 1000))
+        && data.createdAt == request.time;
+    }
+
+    match /responses/{responseId} {
+      allow get, list: if true;
+      allow create: if isValidId(responseId) && isValidSurveyResponse(incoming());
+      allow update, delete: if false;
+    }
+  }
+}
