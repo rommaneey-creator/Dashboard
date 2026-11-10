@@ -152,7 +152,7 @@ export default function DashboardPage() {
           type="button"
           onClick={handleDownloadCsv}
           disabled={responses.length === 0}
-          className="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap shrink-0"
+          className="inline-flex items-center gap-2 rounded-xl bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50 whitespace-nowrap shrink-0"
         >
           <Download className="h-4 w-4" />
           <span>ดาวน์โหลด CSV</span>
@@ -161,23 +161,23 @@ export default function DashboardPage() {
 
       {/* Top KPI Row */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-6">
-        <div className="rounded-2xl border border-sky-100 bg-white p-6">
+        <div className="rounded-2xl border border-orange-100 bg-white p-6">
           <div className="flex items-center justify-between text-sm font-medium text-slate-500">
             <span>จำนวนผู้ตอบทั้งหมด</span>
-            <Users className="h-5 w-5 text-sky-500" />
+            <Users className="h-5 w-5 text-orange-500" />
           </div>
-          <div className="mt-3 text-4xl font-bold text-sky-700 tabular-nums">
+          <div className="mt-3 text-4xl font-bold text-orange-600 tabular-nums">
             {loading ? '—' : stats.total}
             <span className="ml-2 text-base font-normal text-slate-500">คน</span>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-emerald-100 bg-white p-6">
+        <div className="rounded-2xl border border-orange-100 bg-white p-6">
           <div className="text-sm font-medium text-slate-500">
             คะแนนเฉลี่ยรวม (เต็ม 5.00)
           </div>
           <div className="mt-3 flex items-baseline gap-3">
-            <span className="text-4xl font-bold text-emerald-600 tabular-nums">
+            <span className="text-4xl font-bold text-orange-600 tabular-nums">
               {loading ? '—' : stats.overallAvg.toFixed(2)}
             </span>
             {stats.total > 0 && (
@@ -188,10 +188,10 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-sky-100 bg-white p-6">
+        <div className="rounded-2xl border border-orange-100 bg-white p-6">
           <div className="flex items-center justify-between text-sm font-medium text-slate-500">
             <span>ข้อเสนอแนะที่ได้รับ</span>
-            <MessageSquare className="h-5 w-5 text-emerald-500" />
+            <MessageSquare className="h-5 w-5 text-orange-500" />
           </div>
           <div className="mt-3 text-4xl font-bold text-slate-900 tabular-nums">
             {loading ? '—' : stats.comments.length}
@@ -232,9 +232,9 @@ export default function DashboardPage() {
                       )}
                     </div>
                   </div>
-                  <div className="h-4 w-full overflow-hidden rounded-full bg-sky-50">
+                  <div className="h-4 w-full overflow-hidden rounded-full bg-orange-50">
                     <div
-                      className="h-full rounded-full bg-gradient-to-r from-sky-500 to-emerald-500 transition-all duration-300"
+                      className="h-full rounded-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-300"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
@@ -263,7 +263,7 @@ export default function DashboardPage() {
             <button
               type="button"
               onClick={handleCopyLink}
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-sky-200 bg-sky-50 px-4 py-2.5 text-sm font-semibold text-sky-800 transition-colors hover:bg-sky-100"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-orange-200 bg-orange-50 px-4 py-2.5 text-sm font-semibold text-orange-800 transition-colors hover:bg-orange-100"
             >
               {copied ? (
                 <>
